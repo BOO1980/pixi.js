@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="http://localhost:8888/pixi.min.js"></script>
+	<script ds="text/javascript"></script>
+	<title>Loading image into the texture cache</title>
+</head>
+<body>
+	<script>
+		/*Create Pixi Application*/
+		let app = new PIXI.Application({
+			width:256, 
+			height:256,
+			antialias: true,
+			transparent: false,
+			resolution:1
+		});
+
+		document.body.appendChild(app.view);
+
+		//Stores all the sprites we will need 
+	 	//let catTexture = PIXI.utils.TextureCache["../../../Assets/Images/cat.png"];
+	 	//let catSprite = new PIXI.Sprite(catTexture);
+		
+		PIXI.loader
+			.add("http://localhost:8888/Assets/Images/cat.png")
+			.load(setup);
+
+		function setup(){
+		let sprite = new PIXI.Sprite(
+				PIXI.loader.resources["http://localhost:8888/Assets/Images/cat.png"].texture
+				);
+			app.stage.addChild(sprite);	
+		}
+	</script>
+</body>
+</html>
